@@ -7,15 +7,16 @@ from .manage import Tracemail, DatabaseError
 from .config import load as load_config
 
 
+config = load_config('config.toml')
+
 app = Flask('tracemail')
+app.config['APPLICATION_ROOT'] = config.app.prefix
 
 jinja_env = jinja2.Environment(
     loader = jinja2.PackageLoader('tracemail', 'templates'),
     autoescape = True,
 )
 
-
-config = load_config('config.toml')
 tm = Tracemail(config)
 
 
