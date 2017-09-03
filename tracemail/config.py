@@ -9,12 +9,12 @@ class Section:
 
 class Config:
     _sections = {
-        'database' : [ 'driver', 'username', 'password', 'dbname' ]
+        'database' : [ 'host', 'user', 'password', 'dbname' ]
     }
 
 def load(path):
+    config = Config()
     try:
-        config = Config()
         kv = toml.load(path)
     except Exception as e:
         raise ConfigError(e)
@@ -38,3 +38,4 @@ def load(path):
             if field_value is not None:
                 raise ConfigError('Unknown config option {}.{}'.format(sect_name, field_name))
 
+    return config

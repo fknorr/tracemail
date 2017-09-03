@@ -1,5 +1,5 @@
 [database]
-driver = postgres
-username = "user"
+host = "localhost"
+user = "user"
 password = "pass"
 dbname = "mail"
