@@ -40,3 +40,12 @@ class Tracemail:
     def enable_alias(self, alias, enable):
         pass
 
+    def delete_alias(self, alias):
+        try:
+            cur = self._db.cursor()
+            cur.execute('DELETE FROM trace_aliases WHERE alias = %s', (alias,))
+            cur.close()
+            self._db.commit()
+        except postgres.Error as e:
+            raise DatabaseError(e)
+

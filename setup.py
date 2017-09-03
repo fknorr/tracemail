@@ -21,7 +21,8 @@ if __name__ == "__main__":
         include_package_data = True,
         install_requires = [
             "psycopg2",
-            "toml"
+            "toml",
+            "flask"
         ],
         version = version,
         description = "Disposable e-mail address management",
