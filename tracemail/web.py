@@ -11,7 +11,7 @@ app = Flask('tracemail')
 
 jinja_env = jinja2.Environment(
     loader = jinja2.PackageLoader('tracemail', 'templates'),
-    autoescape = jinja2.select_autoescape(['html', 'xml'])
+    autoescape = True,
 )
 
 
@@ -23,7 +23,7 @@ tm = Tracemail(config)
 def list_aliases():
     error = request.args.get('error', None)
     template = jinja_env.get_template('list.html')
-    return template.render(prefix='', error=error, list=tm.list_aliases())
+    return template.render(prefix=config.app.prefix, error=error, list=tm.list_aliases())
 
 
 @app.route('/new', methods=['POST'])

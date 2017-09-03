@@ -9,6 +9,7 @@ class Section:
 
 class Config:
     _sections = {
+        'app' : [ 'prefix' ],
         'database' : [ 'host', 'user', 'password', 'dbname' ]
     }
 
