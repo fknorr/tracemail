@@ -27,6 +27,11 @@ def list_aliases():
     return template.render(prefix=config.app.prefix, error=error, list=tm.list_aliases())
 
 
+def redirect_to_list_page(error=None):
+    query = '?' + urlencode({ 'error' : error}) if error else ''
+    return flask.redirect(config.app.prefix + '/' + query, code=303)
+
+
 @app.route('/new', methods=['POST'])
 def new_alias():
     error = None
@@ -35,7 +40,7 @@ def new_alias():
     except DatabaseError as e:
         error = str(e)
 
-    return flask.redirect('/' if not error else '/error=' + urlencode(error), code=303)
+    return redirect_to_list_page(error)
 
 
 @app.route('/delete', methods=['POST'])
@@ -46,4 +51,4 @@ def delete_alias():
     except DatabaseError as e:
         error = str(e)
 
-    return flask.redirect('/' if not error else '/error=' + urlencode(error), code=303)
+    return redirect_to_list_page(error)
