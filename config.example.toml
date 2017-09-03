@@ -1,0 +1,5 @@
+[database]
+driver = postgres
+username = "user"
+password = "pass"
+dbname = "mail"
